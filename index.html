@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVS CENTER - તમારા ડિજિટલ કામો માટે વિશ્વસનીય કેન્દ્ર</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #059669;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --light-color: #f9fafb;
+            --dark-color: #1f2937;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--light-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            min-height: 80vh;
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 9999px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            border-top: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-top-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .service-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 0.75rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 9999px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#home" class="logo">JVS CENTER</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">JVS CENTER</h1>
+                <p class="hero-subtitle">તમારા ડિજિટલ કામો માટે વિશ્વસનીય કેન્દ્ર</p>
+                <a href="tel:9726912218" class="hero-cta">📞 9726912218</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">અમારી વિશેષતાઓ</h2>
+                <p class="section-subtitle">તમારા માટે શ્રેષ્ઠ સેવા પ્રદાન કરવા માટે અમે પ્રતિબદ્ધ છીએ</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">ઝડપી સેવા</h3>
+                    <p>તમારા બધા કામ ઝડપથી અને સચોટ રીતે પૂરા કરીએ છીએ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">સુરક્ષિત પ્રક્રિયા</h3>
+                    <p>તમારી વ્યક્તિગત માહિતી સંપૂર્ણ સુરક્ષિત રાખીએ છીએ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💯</div>
+                    <h3 class="feature-title">100% વિશ્વસનીય</h3>
+                    <p>વર્ષોના અનુભવ સાથે તમારા પર વિશ્વાસપાત્ર સેવા</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">એક્સપર્ટ ટીમ</h3>
+                    <p>અનુભવી અને કુશળ ટીમ દ્વારા બધી સેવાઓ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">અમારી સેવાઓ</h2>
+                <p class="section-subtitle">તમારા બધા સરકારી કામો એક જ જગ્યાએ</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📄</div>
+                        <h3 class="service-title">PAN Card સંબંધિત સેવાઓ</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી પાન કાર્ડ બનાવવું</li>
+                        <li>પાન કાર્ડમાં સુધારા</li>
+                        <li>પાન કાર્ડનું પુનઃપ્રાપ્તિ</li>
+                        <li>એડ્રેસ અપડેટ / મોબાઇલ નંબર લિંક</li>
+                        <li>પાન કાર્ડ સ્ટેસ ચેક</li>
+                        <li>e-PAN Card ડાઉનલોડ</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🗳️</div>
+                        <h3 class="service-title">ચૂંટણી કાર્ડ સેવાઓ</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી ચૂંટણી કાર્ડ માટે અરજી</li>
+                        <li>ચૂંટણી કાર્ડમાં સુધારો</li>
+                        <li>પુનઃપ્રાપ્ત / ગુમ થયેલ કાર્ડ</li>
+                        <li>સરનામું બદલાવ</li>
+                        <li>ચૂટણી કાર્ડ સ્ટેસ ચેક</li>
+                        <li>e-EPIC Card ડાઉનલોડ</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🛂</div>
+                        <h3 class="service-title">પાસપોર્ટ પ્રક્રિયા</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી પાસપોર્ટ અરજી</li>
+                        <li>પાસપોર્ટ પુનઃપ્રાપ્તિ / રિન્યુઅલ</li>
+                        <li>ડેટા સુધારાવાળી અરજી</li>
+                        <li>ટાટ્કાલ પાસપોર્ટ માટે સહાય</li>
+                        <li>પોલીસ વેરિફિકેશન સ્ટેટસ ચેક</li>
+                        <li>અપોઇન્ટમેન્ટ બુકિંગ</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🍽️</div>
+                        <h3 class="service-title">FSSAI ફૂડ લાયસન્સ</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી FSSAI લાયસન્સ અરજી</li>
+                        <li>ફૂડ લાયસન્સનું રિન્યુઅલ</li>
+                        <li>ફૂડ લાયસન્સ અપગ્રેડ / સુધારો</li>
+                        <li>લાયસન્સ સ્ટેસ ચેક</li>
+                        <li>ડિજિટલ લાયસન્સ ડાઉનલોડ</li>
+                        <li>FSSAI નમ્બર મેળવવા માર્ગદર્શન</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🚗</div>
+                        <h3 class="service-title">ડ્રાઈવિંગ લાયસન્સ સેવા</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી લર્નિંગ લાયસન્સ અરજી</li>
+                        <li>ડ્રાઈવિંગ લાયસન્સ માટે અરજી</li>
+                        <li>લાયસન્સ રિન્યુઅલ</li>
+                        <li>ડુપ્લિકેટ લાયસન્સ માટે અરજી</li>
+                        <li>લાયસન્સમાં સુધારો</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🏗</div>
+                        <h3 class="service-title">MSME સર્ટિફિકેટ</h3>
+                    </div>
+                    <ul class="service-list">
+                        <li>નવી MSME/Udyam રજિસ્ટેશન</li>
+                        <li>પ્રમાણપત્ર ડાઉનલોડ</li>
+                        <li>રજખઠ</li>
+                        <li>MSME રિન્યુઅલ / અપડેટ</li>
+                        <li>લોન અને લાભ માટે સહાય</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section" id="contact">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title">તમારા કામ શુરૂ કરવા તૈયાર?</h2>
+                <p> class="section-subtitle">આજે જ અમારો સંપર્ક કરો અને તમારા બધા સરકારી કામો સરળ બનાવો</p>
+                <div class="cta-buttons">
+                    <a href="tel:9726912218" class="cta-button">📞 Call Now</a>
+                    <a href="https://wa.me/919726912218" class="cta-button">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>JVS TOP</h3>
+                <p>તમારા ડિજિટલ કામો m</p>
+                <p>વર્ષો</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <a href="tel:9726912218">📞 9726912218</a>
+                <a href="https://wa.me/919726912218">📱</a>
+                <p>📍 Ahmedabad, Gujarat</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">PAN Card Services</a>
+                <a href="#services">Passport Services</a>
+                <a href="#services">Election Card</a>
+                <a href="#services">FSSAI License</a>
+            </div>
+            <div class="footer-section">
+                <h3>Working Hours</h3>
+                <p>Monday - Saturday</p>
+                <p>9:00 AM - 7:00 PM</p>
+                <p>Sunday Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 JVS CENTER. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰');
+    });
+
+    // Scroll effects
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>
+</body>
+</html>
